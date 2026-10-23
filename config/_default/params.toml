@@ -1,0 +1,1548 @@
+# -------------------------------------------------------------------------------------
+# Theme Core Configuration
+# Two types of params:
+#   1. Site-level params — apply to the entire site, can NOT be overridden per-page.
+#   2. Page-level params — can be overridden per-page via page front matter.
+#
+# See: https://fixit.lruihao.cn/docs/getting-started/configuration/params/
+# -------------------------------------------------------------------------------------
+
+# FixIt theme version.
+# Example: "0.4.X", "0.4.5", "v1.0.0" etc.
+version = "1.0.X"
+# Site description.
+description = ""
+# Site keywords.
+keywords = []
+# Site default theme.
+# Available values: ["light", "dark", "auto"]
+default_theme = "auto"
+# Which hash function used for SRI, when empty, no SRI is used.
+# Available values: ["sha256", "sha384", "sha512", "md5"]
+fingerprint = ""
+# Date format.
+date_format = "2006-01-02"
+# Website images for Open Graph and Twitter Cards.
+images = []
+# Whether to add site title to the title of every page.
+# Remember to set up your site title in `hugo.toml` (e.g. `title = "title"`).
+with_site_title = true
+# Title delimiter when the site title is added to the title of every page.
+title_delimiter = "-"
+# Whether to add site subtitle to the title of index page.
+# Remember to set up your site subtitle by `params.header.subtitle.name`.
+index_with_subtitle = false
+# Whether to enable merging missing translations from other languages.
+# When set to true, missing translations from other languages will be merged and displayed.
+# Default is false for better performance, especially for single-language sites.
+# Set to true if your site has multiple languages and you want to show all content.
+enable_translation_merge = false
+# Whether to enable tooltip replacement for elements with title attribute, such as footnote references.
+tooltip = true
+# Whether to generate author archive pages at `/authors/<name>/`.
+# IMPORTANT: Keep this in sync with `author = "authors"` in [taxonomies] below —
+# enable or disable both together, otherwise the build will fail.
+author_archive = true
+# FixIt will, by default, inject a theme meta tag in the HTML head on the home page only.
+# You can turn it off, but we would really appreciate if you don't, as this is a good way to watch FixIt's popularity on the rise.
+disable_theme_inject = false
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Page-level params
+# All params and sections below can be used in page front matter to override per-page.
+#
+# Example front matter:
+#   ---
+#   capitalize_titles: false
+#   hidden_from_home_page: true
+#   authors: [Alice, Bob]  # multi-author registry keys (see [params.author] notes below)
+#   toc:
+#     enable: true
+#   math:
+#     enable: true
+#   comment:
+#     enable: false
+#   ---
+#
+# See: https://fixit.lruihao.cn/docs/content-management/front-matter
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Whether to capitalize titles.
+capitalize_titles = true
+# Whether to show summary in plain text.
+summary_plainify = false
+# Whether to enable the author's avatar of the post.
+author_avatar = true
+# Whether to hide a page from home page.
+hidden_from_home_page = false
+# Whether to hide a page from search results.
+hidden_from_search = false
+# Whether to hide a page from related posts.
+hidden_from_related = false
+# Whether to hide a page from RSS, Atom and JSON feed.
+hidden_from_feed = false
+# Whether to enable twemoji.
+twemoji = false
+# Whether to enable lightgallery.
+# Set to true, images in the content will be shown as the gallery if the image has a title, e.g. `![alt](src "title")`.
+# Set to "force", images in the content will be forced to shown as the gallery regardless of the image has a title or not, e.g. `![alt](src)`.
+lightgallery = false
+# Whether to enable the ruby extended syntax.
+ruby = true
+# Whether to enable the fraction extended syntax.
+fraction = true
+# Whether to enable the fontawesome extended syntax.
+fontawesome = true
+# License info (HTML format is supported).
+license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
+# Page style.
+# Available values: ["narrow", "normal", "wide", ...]
+page_style = "normal"
+# Auto bookmark support.
+# If true, save the reading progress when closing the page.
+auto_bookmark = false
+# Whether to show the last modified time.
+show_lastmod = true
+# Whether to enable word count.
+word_count = true
+# Whether to enable reading time.
+reading_time = true
+# Whether to enable instant.page.
+instant_page = false
+# Whether to enable collection list at the sidebar.
+collection_list = false
+# Whether to enable collection navigation at the end of the post.
+collection_navigation = false
+# End of post flag.
+end_flag = ""
+
+# Author configuration (site default author — single-author pages, footer, home profile, etc.).
+# Multi-author support (optional):
+# 1. Create a registry file per author, e.g. `data/authors/Alice.toml`:
+#
+#     ```toml
+#     name = "Alice"
+#     link = "https://alice.example.com"
+#     email = "alice@example.com"
+#     avatar = "/images/authors/alice.png"
+#     [zh-cn]            # optional I18n override, key = language key
+#     name = "爱丽丝"
+#     ```
+#
+# 2. In page front matter: `authors: [Alice, Bob]` (registry keys).
+#    When `authors` is set it takes precedence over `author`.
+#    Missing registry keys fall back to `{name: key}` (no inheritance from params.author).
+#    With the `author = "authors"` taxonomy registered, this also creates
+#    `/authors/<key>/` archive pages via the generic taxonomy templates.
+[author]
+name = ""
+email = ""
+link = ""
+avatar = ""
+
+# Link configuration.
+[link]
+# Whether to add external icon for external links automatically.
+external_icon = true
+
+# External link guard configuration.
+[link.guard]
+enable = false
+# External link guard mode.
+# Available values: ["modal", "redirect"].
+# In "modal" mode, a dialog will pop up to ask for confirmation when users click external links.
+# In "redirect" mode, users will be redirected to an intermediate page before visiting external links.
+mode = "modal"
+# Allowed domains (exact host or parent domain) will skip confirmation.
+allow_domains = []
+
+# Image configuration.
+# Combined with Hugo's image processing option `imaging` for image optimisation.
+[image]
+# Cache remote images for better optimisations.
+cache_remote = false
+# Image resizing and optimisation (may slow builds).
+optimise = false
+# A list of image file names or patterns to exclude from optimisation.
+# Example: `["no-optimize.jpg", "*.tiff", "images/exclude-*.webp"]`
+black_list = []
+
+# Code block wrapper configuration.
+# You can override the global config via Markdown attributes.
+# Example: info string `lang {mode="mac", max_shown_lines=5}` on the code fence.
+[codeblock]
+# Whether to enable the code block wrapper.
+wrapper = true
+# Code block mode.
+# Available values: ["classic", "mac", "simple"].
+# If you set to custom value, you need to create a custom CSS for data-mode attribute.
+mode = "classic"
+# Additional classes for the code block wrapper.
+# Example: "is-collapsed is-expanded line-nos-hidden line-wrapping"
+wrapper_class = ""
+# The maximum number of lines to show in the code block preview.
+max_shown_lines = 10
+# Whether to show shadow effect for code blocks.
+# Available values: ["always", "hover", "never"]
+shadow = "never"
+# Whether to enable code copy button.
+copyable = true
+# Whether to enable code download button in the code block header.
+# Only available in classic mode.
+downloadable = false
+# Whether to enable code fullscreen button in the code block header.
+# Only available in classic mode.
+fullscreen = false
+# Whether to enable line numbers toggle button in the code block header.
+# Only available in classic mode.
+line_nos_toggler = true
+# Whether to enable toggle line wrapping button in the code block header.
+# Only available in classic mode.
+line_wrap_toggler = true
+# Whether to enable code edit button in the code block header (**experimental**).
+# Only available in classic mode.
+editable = false
+
+# JSON Viewer configuration.
+# See: [json-viewer-element](https://github.com/Lruihao/json-viewer-element)
+[json_viewer]
+enable = true
+expand_depth = 1
+copyable = true
+sort = false
+boxed = true
+
+# File tree configuration.
+# See: [File Tree](https://fixit.lruihao.cn/docs/content-management/shortcodes/extended/file-tree/)
+[filetree]
+# The expand level of the tree (expand all: -1, collapse all: 0).
+level = 1
+# Whether to append a trailing `/` to folder names.
+folder_slash = false
+# List of file or folder names to ignore.
+ignore_list = []
+# List of file or folder names to highlight.
+highlight_list = []
+
+# Mermaid configuration.
+# See: [Mermaid](https://fixit.lruihao.cn/docs/content-management/diagrams-support/mermaid/)
+[mermaid]
+# Whether to enable the Mermaid wrapper.
+# When enabled, Mermaid diagrams are wrapped with diagram tabs and actions (pan/zoom, reset view, download as SVG).
+wrapper = true
+# Mermaid ESM module CDN source.
+cdn = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs"
+# ZenUML ESM module CDN source.
+# You can set it to a CDN source to enable ZenUML support.
+# Example: `https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs`.
+zenuml = ""
+# For values, See: [Available Themes](https://mermaid.js.org/config/theming.html#available-themes).
+themes = [
+  "default",
+  "dark"
+]
+# The security level for Mermaid diagrams.
+# Available values: ["strict", "loose", "antiscript", "sandbox"]
+security_level = "loose"
+# The appearance style for Mermaid diagrams.
+# Available values: ["classic", "handDrawn"]
+look = "handDrawn"
+# Specifies the font to be used in the rendered diagrams.
+font_family = ""
+# Layout loaders from ESM module CDN sources (e.g., ELK layout engine).
+# Example: ["https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs"].
+# This will enable additional layout options: ["elk", "elk.layered", "elk.stress", "elk.force", "elk.mrtree"].
+layout_loaders = []
+# Default layout algorithm for rendering diagrams.
+# Available values: ["dagre", "elk", "elk.layered", "elk.stress", "elk.force", "elk.mrtree"].
+# Note: ELK layouts require `layout_loaders` to be configured first.
+layout = "dagre"
+
+# Table of the contents configuration.
+[toc]
+# Whether to enable the table of the contents.
+enable = true
+# Whether to keep the static table of the contents in front of the post.
+keep_static = false
+# Whether to make the table of the contents in the sidebar automatically collapsed.
+auto = true
+# Position of TOC.
+# Available values: ["start", "end"]
+position = "end"
+# Supersede `markup.tableOfContents` settings.
+ordered = false
+start_level = 2
+end_level = 6
+# Whether to decrease the H1 heading level in content.
+decrease_h1 = false
+
+# {{< version 1.0.0 >}} Post disclaimer/declaration.
+[disclaimer]
+# Whether to enable the disclaimer.
+enable = false
+# Disclaimer type.
+# Available values: ["ai", "repost", "original", "custom"]
+type = "ai"
+# Custom disclaimer content (optional, uses I18n default if empty).
+content = ""
+
+# Display a message at the beginning of an article to warn the reader that its content might be expired.
+[expiration_reminder]
+enable = false
+# Display the reminder if the last modified time is more than 90 days ago.
+reminder = 90
+# Display warning if the last modified time is more than 180 days ago.
+warning = 180
+# If the article expires, close the comment or not.
+close_comment = false
+
+# Page heading configuration.
+[heading]
+# Whether to capitalize automatic text of headings.
+capitalize = false
+
+# Must set `params.toc.ordered` to true.
+[heading.number]
+# Whether to enable auto heading numbering.
+enable = false
+# Only enable in main section pages (default is posts).
+only_main_section = true
+
+# {{< version 1.0.0 >}} Table configuration.
+[table]
+# Whether to enable auto table numbering.
+number = false
+# Whether to enable table sorting.
+sort = true
+
+# Mathematical formulas configuration.
+# See: [Formula](https://fixit.lruihao.cn/docs/content-management/markdown-syntax/extended/#formula)
+[math]
+enable = true
+# Mathematical formulas rendering engines.
+# Available values: ["katex", "mathjax"]
+type = "katex"
+
+# KaTeX server-side rendering.
+# See: [KaTeX](https://katex.org) and [transform.ToMath Options](https://gohugo.io/functions/transform/tomath/#options)
+[math.katex]
+# KaTeX extension copy-tex.
+copy_tex = true
+throw_on_error = false
+error_color = "#ff4949"
+
+# Custom macros map.
+# Syntax: `<macro> = <definition>`
+# Example:
+# ```toml
+# [params.math.katex.macros]
+# "\\f" = "#1f(#2)" # usage: $\f{a}{b}$
+# ```
+[math.katex.macros]
+
+# MathJax server-side rendering.
+# See: [MathJax](https://www.mathjax.org) and [MathJax Options](https://docs.mathjax.org/en/latest/options/index.html)
+[math.mathjax]
+cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+
+# MathJax packages config
+# Example:
+# ```toml
+# [params.math.mathjax.packages]
+# "[+]" = ["configmacros"]
+# ```
+[math.mathjax.packages]
+
+# Custom macros map.
+# Syntax: `<macro> = <definition>`
+# Example:
+# ```toml
+# [params.math.mathjax.macros]
+# bold = ["{\\bf #1}", 1] # usage: $\bold{math}$
+# ```
+[math.mathjax.macros]
+
+# MathJax loader configuration.
+# More loader config e.g source, dependencies, provides etc support.
+[math.mathjax.loader]
+load = [ "ui/safe" ]
+
+# Example:
+# ```toml
+# [params.math.mathjax.loader.paths]
+# custom = "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/"
+# ```
+[math.mathjax.loader.paths]
+
+[math.mathjax.options]
+enable_menu = true
+# HTML tags that won't be searched for math.
+skip_html_tags = [
+  "script",
+  "noscript",
+  "style",
+  "textarea",
+  "pre",
+  "code",
+  "math",
+  "select",
+  "option",
+  "mjx-container"
+]
+# Class that marks tags not to search.
+ignore_html_class = "mathjax_ignore"
+
+# HTML tags that can appear within math.
+# Example:
+# ```toml
+# [params.math.mathjax.options.include_html_tags]
+# "#comment" = ""
+# br = "\n"
+# wbr = ""
+# ```
+[math.mathjax.options.include_html_tags]
+
+# Mapbox GL JS configuration.
+# See: [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js)
+[mapbox]
+# Access token of Mapbox GL JS.
+access_token = ""
+# Style for the light theme.
+light_style = "mapbox://styles/mapbox/light-v11"
+# Style for the dark theme.
+dark_style = "mapbox://styles/mapbox/dark-v11"
+# Whether to add NavigationControl.
+navigation = true
+# Whether to add GeolocateControl.
+geolocate = true
+# Whether to add ScaleControl.
+scale = true
+# Whether to add FullscreenControl.
+fullscreen = true
+
+# PostChat AI configuration.
+# Based on your posts to build a knowledge base, support AI summary, AI search, and AI Chatbot.
+# See: [HongMoAI](https://ai.zhheo.com/docs/).
+# Get PostChat Key from my invitation link, thanks for your support!
+# https://ai.zhheo.com/console/login?InviteID=85041330
+[post_chat]
+enable = false
+key = ""
+# How users initiate chats.
+# Available values: ["iframe", "magic"]
+user_mode = "iframe"
+add_button = true
+default_input = false
+left = ""
+bottom = ""
+width = ""
+height = ""
+fill = ""
+background_color = ""
+upload_web = true
+show_invite_link = true
+user_title = ""
+user_desc = ""
+# DOM container to be blacked out, e.g. [".aplayer"]
+black_dom = []
+# only for iframe mode.
+# Example: "375px"
+frame_width = ""
+# Example: "600px"
+frame_height = ""
+# Only for magic mode.
+user_icon = ""
+default_chat_questions = []
+default_search_questions = []
+hot_words = true
+
+# Summary AI configuration.
+# See: [PostSummary](https://ai.zhheo.com/docs/summary.html)
+[post_summary]
+enable = false
+# If you set `params.post_chat.key`, you don't need to set `params.post_summary.key`.
+key = ""
+title = ""
+# Available values: ["", "simple", "yanzhi", "menghuan"]
+theme = ""
+post_url = ""
+blacklist = ""
+word_limit = 1000
+typing_animate = true
+beginning_text = ""
+loading_text = true
+
+# Podcast AI configuration.
+# See: [Podcast](https://ai.zhheo.com/docs/podcast.html)
+[podcast]
+enable = false
+
+# Related content configuration.
+# See: [Related Content](https://gohugo.io/content-management/related/)
+[related]
+enable = false
+count = 5
+# Position of related content.
+# Available values: ["aside", "footer"]
+position = [
+  "aside",
+  "footer"
+]
+
+# Donate (Sponsor) settings.
+[reward]
+enable = false
+animation = false
+# Position relative to post footer.
+# Available values: ["before", "after"]
+position = "after"
+# Comment text shown near the reward trigger (HTML format is supported).
+comment = "Buy me a coffee"
+# Display mode of QR code images.
+# Available values: ["static", "fixed"]
+mode = "static"
+
+# Ways to donate (sponsor).
+# Example:
+# ```toml
+# [params.reward.ways]
+# wechatpay = "/images/wechatpay.png"
+# alipay = "/images/alipay.png"
+# paypal = "/images/paypal.png"
+# bitcoin = "/images/bitcoin.png"
+# ```
+[reward.ways]
+
+# Post footer link configuration.
+[post_link]
+# Whether to show link to Raw Markdown content.
+markdown = true
+# Whether to show link to view source code (requires git_info.repo).
+source = true
+# Whether to show link to edit the post (requires git_info.repo).
+edit = true
+# Whether to show link to report issue (requires git_info.repo).
+report = true
+# Open in editor protocol (e.g. "vscode", "trae" etc.), empty to disable.
+editor = "vscode"
+
+# Social share links in post page.
+[share]
+enable = true
+Twitter = true
+Facebook = true
+Linkedin = false
+Whatsapp = false
+Pinterest = false
+Tumblr = false
+HackerNews = false
+Reddit = false
+VK = false
+Buffer = false
+Xing = false
+Line = false
+Instapaper = false
+Pocket = false
+Flipboard = false
+Weibo = true
+Myspace = false
+Blogger = false
+Baidu = false
+Odnoklassniki = false
+Evernote = false
+Skype = false
+Trello = false
+Mix = false
+
+# Comment configuration.
+[comment]
+enable = false
+
+# Artalk comment configuration.
+# See: [Artalk](https://artalk.js.org/)
+[comment.artalk]
+enable = false
+server = "https://yourdomain"
+site = "默认站点"
+# Prefer remote (backend) configuration over local.
+# If true, remote config takes priority; if false (default), local config overrides remote.
+prefer_remote_conf = false
+placeholder = ""
+no_comment = ""
+send_btn = ""
+editor_travel = true
+flat_mode = "auto"
+# Enable lightgallery support.
+lightgallery = false
+locale = ""
+emoticons = ""
+nest_max = 2
+# Available values: ["DATE_ASC", "DATE_DESC", "VOTE_UP_DESC"]
+nest_sort = "DATE_ASC"
+vote = true
+vote_down = false
+ua_badge = true
+list_sort = true
+list_unread_highlight = false
+img_upload = true
+# Available values: [false, "native", "data-src"]
+img_lazy_load = false
+preview = true
+version_check = true
+# Request timeout in milliseconds.
+req_timeout = 15000
+# Page view increment on comment list load.
+pv_add = true
+
+# Pagination configuration.
+[comment.artalk.pagination]
+page_size = 20
+read_more = true
+auto_load = true
+
+# Height limit configuration.
+[comment.artalk.height_limit]
+content = 300
+children = 400
+scrollable = false
+
+# Disqus comment configuration.
+# See: [Disqus](https://disqus.com)
+[comment.disqus]
+enable = false
+# Disqus shortname to use Disqus in posts.
+shortname = ""
+
+# Gitalk comment configuration.
+# See: [Gitalk](https://github.com/gitalk/gitalk)
+[comment.gitalk]
+enable = false
+owner = ""
+repo = ""
+client_id = ""
+client_secret = ""
+
+# Valine comment configuration.
+# See: [Valine](https://github.com/xCss/Valine)
+[comment.valine]
+enable = false
+app_id = ""
+app_key = ""
+placeholder = ""
+avatar = "mp"
+meta = [
+  'nick',
+  'mail',
+  'link'
+]
+required_fields = []
+page_size = 10
+lang = ""
+visitor = true
+record_ip = true
+highlight = true
+enable_qq = false
+server_urls = ""
+# Emoji data file name, default is "google.yml".
+# Available values: ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"].
+# Located in "themes/FixIt/assets/lib/valine/emoji/" directory.
+# You can store your own data files in the same path under your project:
+# "assets/lib/valine/emoji/".
+emoji = ""
+comment_count = true
+
+# Waline comment configuration.
+# See: [Waline](https://waline.js.org)
+[comment.waline]
+enable = false
+server_url = ""
+pageview = false
+emoji = [ "//unpkg.com/@waline/emojis@1.1.0/weibo" ]
+meta = [
+  "nick",
+  "mail",
+  "link"
+]
+required_meta = []
+login = "enable"
+word_limit = 0
+page_size = 10
+image_uploader = false
+highlighter = false
+comment = false
+tex_renderer = false
+search = false
+recaptcha_v3_key = ""
+turnstile_key = ""
+reaction = false
+
+# Facebook comment configuration.
+# See: [Facebook Comments](https://developers.facebook.com/docs/plugins/comments)
+[comment.facebook]
+enable = false
+width = "100%"
+num_posts = 10
+app_id = ""
+language_code = ""
+
+# Telegram comments configuration.
+# See: [Telegram Comments](https://comments.app)
+[comment.telegram]
+enable = false
+site_id = ""
+limit = 5
+height = ""
+color = ""
+colorful = true
+dislikes = false
+outlined = false
+
+# Utterances comment configuration.
+# See: [Utterances](https://utteranc.es)
+[comment.utterances]
+enable = false
+# owner/repo.
+repo = ""
+issue_term = "pathname"
+label = ""
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+# Twikoo comment configuration.
+# See: [Twikoo](https://twikoo.js.org/)
+[comment.twikoo]
+enable = false
+env_id = ""
+region = ""
+path = ""
+visitor = true
+comment_count = true
+lang = ""
+# Enable lightgallery support.
+lightgallery = false
+# Enable KaTeX support.
+katex = false
+
+# Giscus comments configuration.
+[comment.giscus]
+enable = false
+repo = ""
+repo_id = ""
+category = ""
+category_id = ""
+mapping = ""
+# Or set it to your self-hosted domain.
+origin = "https://giscus.app"
+strict = "0"
+term = ""
+reactions_enabled = "1"
+emit_metadata = "0"
+# Available values: ["top", "bottom"]
+input_position = "bottom"
+lang = ""
+light_theme = "light"
+dark_theme = "dark"
+lazy_load = true
+
+# robots.txt configuration (requires enableRobotsTXT = true).
+# Custom rules appended to robots.txt (optional).
+#
+# ```toml
+# [[params.robots.rules]]
+# user_agent = "SomeBot"
+# disallow = "/"
+# [[params.robots.rules]]
+# user_agent = "GoodBot"
+# allow = "/"
+# ```
+[robots]
+# Allow AI crawlers (unblock GPTBot/ClaudeBot etc.) + Content-Signal comment + AI hidden hint.
+allow_crawlers = false
+
+# Third-party library configuration for some custom CSS and JS files.
+# Files can be loaded from local assets (relative to /assets/) or remote CDN URLs.
+# The key is a unique identifier, the value is the file path or URL.
+[library]
+
+# Load some CSS from local assets.
+# Example: `someCSS = "css/some.css"`.
+# Load some CSS from remote CDN.
+# Example: `someCSS = "https://cdn.example.com/some.css"`
+[library.css]
+
+# Load some JS from local assets.
+# Example: `someJS = "js/some.js"`.
+# Load some JS from remote CDN.
+# Example: `someJS = "https://cdn.example.com/some.js"`
+[library.js]
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Public Git repository information only then enableGitInfo is true.
+[git_info]
+# Example: `"https://github.com/hugo-fixit/docs"`
+repo = ""
+branch = "main"
+# The content directory path relative to the root of the repository.
+dir = "content"
+# The issue template for reporting issue of the posts.
+# Available template params: {title} {URL} {sourceURL}
+issue_tpl = "title=[BUG]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|URL|{URL}|%0A|Filename|{sourceURL}|"
+
+# App and PWA configuration.
+[app]
+# Whether to enable PWA support.
+pwa = false
+# App name used for home screen and manifest (falls back to site title).
+name = ""
+# Optional short name for the manifest (falls back to name).
+short_name = ""
+# Whether to omit favicon resource links.
+no_favicon = false
+# Modern SVG favicon to use in place of older style .png and .ico files.
+svg_favicon = ""
+# Safari mask icon color.
+mask_color = "#FF7359"
+# Windows v8-10 tile color.
+tile_color = "#2d89ef"
+
+# Android browser theme color.
+[app.theme_color]
+light = "#f6f8fa"
+dark = "#151b23"
+
+# Web app manifest icons (users should provide their own icon files).
+[[app.icons]]
+src = "/apple-touch-icon.png"
+sizes = "180x180"
+type = "image/png"
+purpose = "any maskable"
+
+[[app.icons]]
+src = "/android-chrome-192x192.png"
+sizes = "192x192"
+type = "image/png"
+
+[[app.icons]]
+src = "/android-chrome-512x512.png"
+sizes = "512x512"
+type = "image/png"
+
+# Search configuration.
+[search]
+enable = true
+# Type of search engine.
+# Available values: ["fuse", "algolia", "pagefind", "cse"]
+type = "fuse"
+# Max index length of the chunked content.
+content_length = 4000
+# Placeholder of the search bar.
+placeholder = ""
+# Max number of results length.
+max_result_length = 10
+# Snippet length of the result.
+snippet_length = 30
+# HTML tag name of the highlight part in results.
+highlight_tag = "em"
+# Whether to use the absolute URL based on the baseURL in search index.
+absolute_url = false
+# Whether to enable anchorify for headings in search results.
+anchorify = true
+
+# Algolia search configuration.
+[search.algolia]
+index = ""
+app_id = ""
+search_key = ""
+
+# Fuse.js search configuration.
+# See: [Fuse.js options](https://fusejs.io/api/options.html)
+[search.fuse]
+is_case_sensitive = false
+min_match_char_length = 2
+find_all_matches = false
+location = 0
+threshold = 0.3
+distance = 100
+ignore_location = false
+use_extended_search = false
+ignore_field_norm = false
+
+# Pagefind search configuration.
+# See: [Pagefind](http://pagefind.app/)
+[search.pagefind]
+# Pagefind bundle and index directory.
+bundle_path = "pagefind/"
+# Debounce timeout in milliseconds, set to 0 to disable debounce.
+debounce_timeout_ms = 300
+# Whether to respect FixIt built-in search visibility rules.
+use_built_in_filters = true
+# Optional sort field.
+# Available values: ["date", "title"]
+sort_by = ""
+# Sort order for sort_by.
+# Available values: ["asc", "desc"]
+sort_order = "desc"
+
+# Custom Search Engine (CSE).
+[cse]
+# Search engine.
+# Available values: ["google", "bing"]
+engine = "google"
+# Search results page URL (layout: search).
+results_page = "/search/"
+
+# Google Custom Search Engine Context.
+# See: [Google CSE](https://programmablesearchengine.google.com/)
+[cse.google]
+cx = ""
+
+# Bing Custom Search Engine Context (unverified).
+# See: [Bing CSE](https://www.customsearch.ai/)
+[cse.bing]
+cx = ""
+
+# Header configuration.
+[header]
+# Desktop header mode.
+# Available values: ["sticky", "normal", "auto"]
+desktop_mode = "sticky"
+# Mobile header mode.
+# Available values: ["sticky", "normal", "auto"]
+mobile_mode = "auto"
+# Whether to enable header blur effect.
+blur = false
+
+# Header title configuration.
+[header.title]
+# URL of the logo.
+logo = ""
+# Title name.
+name = ""
+# You can add extra information before the name (HTML format is supported), such as icons.
+pre = ""
+# You can add extra information after the name (HTML format is supported), such as icons.
+post = ""
+# Whether to use typeit animation for title name.
+typeit = false
+
+# Header subtitle configuration.
+[header.subtitle]
+# Subtitle name.
+name = ""
+# Whether to use typeit animation for subtitle name.
+typeit = false
+
+# Breadcrumb configuration.
+[breadcrumb]
+enable = false
+sticky = true
+show_home = false
+separator = "/"
+capitalize = true
+
+# Post navigation configuration.
+[navigation]
+# Whether to show the post navigation in section pages scope.
+in_section = false
+# Whether to reverse the next/previous post navigation order.
+reverse = false
+
+# Footer configuration.
+[footer]
+enable = true
+# Whether to show copyright info.
+copyright = true
+# Whether to show the author.
+author = true
+# Site creation year.
+since = ""
+# Public network security only in China (HTML format is supported).
+gov = ""
+# ICP info only in China (HTML format is supported).
+icp = ""
+# License info (HTML format is supported).
+license = ""
+
+# Whether to show Hugo and theme info.
+[footer.powered]
+enable = true
+hugo_logo = false
+theme_logo = false
+
+# Site creation time.
+[footer.site_time]
+enable = false
+animate = true
+icon = "fa-solid fa-heartbeat"
+pre = ""
+# Example: "2021-12-18T16:15:22+08:00"
+value = ""
+
+# Footer lines order.
+# Available values: ["first", 0-5, "last"]
+[footer.order]
+powered = 0
+copyright = 0
+statistics = 0
+visitor = 0
+beian = 0
+
+# Archives page configuration (all pages of posts type).
+[archives]
+# Special amount of posts in archives page.
+paginate = 20
+# Date format (month and day).
+date_format = "01-02"
+
+# Section page configuration (all pages in section).
+[section]
+# Special amount of pages in each section page.
+paginate = 20
+# Date format (month and day).
+date_format = "01-02"
+
+# Section feed configuration for RSS, Atom and JSON feed.
+[section.feed]
+# The number of posts to include in the feed. If set to -1, all posts.
+limit = -1
+# Whether to show the full text content in feed.
+full_text = false
+
+# Term list (category or tag) page configuration.
+[list]
+# Special amount of posts in each list page.
+paginate = 20
+# Date format (month and day).
+date_format = "01-02"
+
+# Term list feed configuration for RSS, Atom and JSON feed.
+[list.feed]
+# The number of posts to include in the feed. If set to -1, all posts.
+limit = -1
+# Whether to show the full text content in feed.
+full_text = false
+
+# Recently updated pages configuration for archives, section and term list.
+[recently_updated]
+archives = true
+section = true
+list = true
+days = 30
+max_count = 10
+
+# TagCloud configuration for tags page.
+[tag_cloud]
+enable = false
+# Minimum font size in px.
+min = 14
+# Maximum font size in px.
+max = 32
+# Maximum count of posts per tag.
+peak_count = 10
+# Order of tags.
+# Available values: ["name", "count"]
+orderby = "name"
+
+# Home page configuration.
+[home]
+
+# Home page profile.
+[home.profile]
+enable = false
+# Whether to show profile and content only in the first home page.
+only_first_page = false
+# Gravatar email for preferred avatar in home page.
+gravatar_email = ""
+# URL of avatar shown in home page, default is author's avatar.
+avatar_url = ""
+# Identifier of avatar menu link.
+avatar_menu = ""
+# Title shown in home page (HTML format is supported).
+title = ""
+# Subtitle shown in home page (HTML format is supported).
+subtitle = ""
+# Whether to use typeit animation for subtitle.
+typeit = true
+# Whether to show social links.
+social = true
+# Disclaimer (HTML format is supported).
+disclaimer = ""
+
+# Home page posts.
+[home.posts]
+enable = true
+# Special amount of posts in each home posts page.
+paginate = 6
+# Whether to show featured image preview in home page post list.
+image_preview = true
+
+# Social configuration about the author.
+# Custom social links like the following.
+#
+# ```toml
+# [params.social.twitter]
+# id = "lruihao"
+# weight = 3
+# prefix = "https://x.com/"
+# title = "X"
+#
+# [params.social.twitter.icon]
+# class = "fa-brands fa-x-twitter"
+# ```
+[social]
+GitHub = ""
+Linkedin = ""
+Twitter = ""
+Instagram = ""
+Facebook = ""
+Telegram = ""
+Medium = ""
+Gitlab = ""
+Youtubelegacy = ""
+Youtubecustom = ""
+Youtubechannel = ""
+Tumblr = ""
+Quora = ""
+Keybase = ""
+Pinterest = ""
+Reddit = ""
+Codepen = ""
+FreeCodeCamp = ""
+Bitbucket = ""
+Stackoverflow = ""
+Weibo = ""
+Odnoklassniki = ""
+VK = ""
+Flickr = ""
+Xing = ""
+Snapchat = ""
+Soundcloud = ""
+Spotify = ""
+Bandcamp = ""
+Paypal = ""
+Fivehundredpx = ""
+Mix = ""
+Goodreads = ""
+Lastfm = ""
+Foursquare = ""
+Hackernews = ""
+Kickstarter = ""
+Patreon = ""
+Steam = ""
+Twitch = ""
+Strava = ""
+Skype = ""
+Whatsapp = ""
+Zhihu = ""
+Douban = ""
+Angellist = ""
+Slidershare = ""
+Jsfiddle = ""
+Deviantart = ""
+Behance = ""
+Dribbble = ""
+Wordpress = ""
+Vine = ""
+Googlescholar = ""
+Researchgate = ""
+Mastodon = ""
+Thingiverse = ""
+Devto = ""
+Gitea = ""
+XMPP = ""
+Matrix = ""
+Bilibili = ""
+ORCID = ""
+Liberapay = ""
+Ko-Fi = ""
+BuyMeaCoffee = ""
+Linktree = ""
+QQ = ""
+QQGroup = ""
+Diaspora = ""
+CSDN = ""
+Discord = ""
+DiscordInvite = ""
+Lichess = ""
+Pleroma = ""
+Kaggle = ""
+MediaWiki = ""
+Plume = ""
+HackTheBox = ""
+RootMe = ""
+Feishu = ""
+TryHackMe = ""
+Douyin = ""
+TikTok = ""
+Credly = ""
+Bluesky = ""
+Phone = ""
+Email = ""
+RSS = true
+
+# TypeIt configuration.
+[typeit]
+# Typing speed between each step (measured in milliseconds).
+speed = 100
+# Blinking speed of the cursor (measured in milliseconds).
+cursor_speed = 1000
+# Character used for the cursor (HTML format is supported).
+cursor_char = "|"
+# Cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited).
+duration = -1
+# Whether your strings will continuously loop after completing.
+loop = false
+
+# Admonitions custom configuration.
+# See: [Custom Admonitions](https://fixit.lruihao.cn/docs/advanced/#custom-admonitions).
+# Syntax: `<type> = <icon>`
+# Example:
+# ```toml
+# [params.admonition]
+# ban = "fa-solid fa-ban"
+# ```
+[admonition]
+
+# Task lists custom configuration.
+# See: [Custom Task Lists](https://fixit.lruihao.cn/docs/advanced/#custom-task-lists).
+# Syntax: `<sign> = <icon>`
+# Example:
+# ```toml
+# [params.task_list]
+# tip = "fa-regular fa-lightbulb"
+# ```
+[task_list]
+
+# Version shortcode configuration.
+[repo_version]
+# Project name.
+name = "FixIt"
+# URL prefix for the release tag.
+url = "https://github.com/hugo-fixit/FixIt/releases/tag/v"
+
+# PanguJS configuration.
+[pangu]
+# For Chinese writing.
+enable = false
+selector = "article"
+
+# Watermark configuration.
+# Detail config See: https://github.com/Lruihao/watermark#readme.
+[watermark]
+enable = false
+# Watermark's text (HTML format is supported).
+content = ""
+# Watermark's transparency.
+opacity = 0.1
+# Watermark's width. Unit: px.
+width = 150
+# Watermark's height. Unit: px.
+height = 20
+# Row spacing of watermarks. Unit: px.
+row_spacing = 60
+# Col spacing of watermarks. Unit: px.
+col_spacing = 30
+# Watermark's tangent angle. Unit: deg.
+rotate = 15
+# Watermark's fontSize. Unit: rem.
+font_size = 0.85
+# Watermark's fontFamily.
+font_family = "inherit"
+
+# Busuanzi count.
+[busuanzi]
+# Whether to enable busuanzi count.
+enable = false
+# Busuanzi count core script source. Default is https://vercount.one/js.
+source = "https://vercount.one/js"
+# Whether to show the site views.
+site_views = true
+# Whether to show the page views.
+page_views = true
+
+# Site verification code configuration for Google/Bing/Yandex/Pinterest/Baidu/360/Sogou.
+[verification]
+google = ""
+bing = ""
+yandex = ""
+pinterest = ""
+baidu = ""
+so = ""
+sogou = ""
+
+# Site SEO configuration.
+[seo]
+# Default cover image for the site.
+cover = ""
+# Thumbnail URL.
+thumbnail_url = ""
+# Page SEO images (frontmatter-overridable).
+images = []
+
+# Publisher info (frontmatter-overridable).
+[seo.publisher]
+name = ""
+logo_url = ""
+
+# Analytics configuration.
+[analytics]
+enable = false
+
+# Google Analytics.
+[analytics.google]
+id = ""
+# Whether to anonymize IP.
+anonymize_ip = true
+
+# Fathom Analytics.
+[analytics.fathom]
+id = ""
+# Server URL for your tracker if you're self hosting.
+server = ""
+
+# Baidu Analytics.
+[analytics.baidu]
+id = ""
+
+# Umami Analytics.
+[analytics.umami]
+data_website_id = ""
+src = ""
+data_host_url = ""
+data_domains = ""
+
+# Plausible Analytics.
+[analytics.plausible]
+data_domain = ""
+src = ""
+
+# Cloudflare Analytics.
+[analytics.cloudflare]
+token = ""
+
+# Cookie consent configuration.
+[cookieconsent]
+enable = true
+
+# Text strings used for Cookie consent banner.
+[cookieconsent.content]
+message = ""
+dismiss = ""
+link = ""
+
+# CDN configuration for third-party library files.
+[cdn]
+# CDN data file name, disabled by default.
+# Available values: ["jsdelivr.yml", "unpkg.yml"].
+# Located in "themes/FixIt/assets/data/cdn/" directory.
+# You can store your own data files in the same path under your project: "assets/data/cdn/".
+data = ""
+
+# Compatibility configuration.
+[compatibility]
+# Whether to use Polyfill.io on cdnjs to be compatible with older browsers.
+# See: https://cdnjs.cloudflare.com/polyfill.
+polyfill = false
+# Whether to use object-fit-images to be compatible with older browsers.
+object_fit = false
+
+# GitHub banner in the header corner.
+[github_corner]
+enable = false
+permalink = "https://github.com/hugo-fixit/FixIt"
+title = "View source on GitHub"
+# Available values: ["start", "end"]
+position = "end"
+
+# Gravatar configuration.
+[gravatar]
+# Depends on the author's email, if the author's email is not set, the local avatar will be used.
+enable = false
+# Gravatar host, default: "www.gravatar.com".
+# Available values: ["cravatar.cn", "gravatar.loli.net", ...]
+host = "www.gravatar.com"
+# Available values: ["", "mp", "identicon", "monsterid", "wavatar", "retro", "blank", "robohash"]
+style = ""
+
+# Back to top.
+[back_to_top]
+enable = true
+# Whether to show the scroll percent indicator around the back to top button.
+scrollpercent = false
+
+# Reading progress bar.
+[reading_progress]
+enable = false
+# Available values: ["start", "end"]
+start = "start"
+# Available values: ["top", "bottom"]
+position = "top"
+reversed = false
+light = ""
+dark = ""
+height = "2px"
+
+# Progress bar in the top during page loading.
+# For more information: https://github.com/CodeByZach/pace.
+[pace]
+enable = false
+# All available colors:
+# ["black", "blue", "green", "orange", "pink", "purple", "red", "silver", "white", "yellow"].
+color = "blue"
+# All available themes:
+# ["barber-shop", "big-counter", "bounce", "center-atom", "center-circle", "center-radar", "center-simple",
+# "corner-indicator", "fill-left", "flash", "flat-top", "loading-bar", "mac-osx", "material", "minimal"].
+theme = "minimal"
+
+# Global Feed configuration for RSS, Atom and JSON feed.
+[feed]
+# The number of posts to include in the feed. If set to -1, all posts.
+limit = 10
+# Whether to show the full text content in feed.
+full_text = true
+
+# Site Challenge for Follow: https://follow.is/.
+[feed.follow]
+feed_id = ""
+user_id = ""
+
+# Taxonomy icons configuration.
+# Works with `taxonomies`. Configure `taxonomies` first, otherwise taxonomy icons will not take effect.
+# Syntax: `<taxonomy> = [<title icon>, <card icon>, <term title icon>]`
+# Example: `topic = ["fa-solid fa-book-bookmark", "fa-solid fa-book", "fa-solid fa-book-open"]`
+[taxonomy_icons]
+
+# Print configuration.
+[print]
+# Whether to expand all admonitions before printing.
+expand_admonition = true
+# Whether to expand all code blocks and code tabs before printing.
+expand_code = true
+# Whether to expand all details elements before printing.
+expand_details = true
+# Whether to expand all file trees before printing.
+expand_file_tree = false
+
+# Custom partials configuration.
+# Custom partials must be stored in the /layouts/_partials/ directory.
+# Depends on open custom blocks https://fixit.lruihao.cn/references/blocks/.
+[custom_partials]
+head = []
+menu_desktop = []
+menu_mobile = []
+profile = []
+aside = []
+comment = []
+footer = []
+widgets = []
+assets = []
+post_toc_before = []
+post_toc_after = []
+post_content_before = []
+post_content_after = []
+post_footer_before = []
+post_footer_after = []
+
+# SCSS variables customization via config.
+# Leave empty to use the theme default value (defined in scss-vars.html).
+# Note: Color values must use hex format (e.g. "#ff0000"), CSS named colors (e.g. "red") are not supported.
+[appearance]
+# Global Typography #
+global_font_family = ""
+global_font_size = ""
+global_font_weight = ""
+global_line_height = ""
+global_border_radius = ""
+# Global Colors #
+global_background_color = ""
+global_background_color_dark = ""
+global_font_color = ""
+global_font_color_dark = ""
+global_font_secondary_color = ""
+global_font_secondary_color_dark = ""
+global_link_color = ""
+global_link_color_dark = ""
+global_link_hover_color = ""
+global_link_hover_color_dark = ""
+global_border_color = ""
+global_border_color_dark = ""
+# Scrollbar #
+scrollbar_color = ""
+scrollbar_hover_color = ""
+# Selection #
+selection_color = ""
+selection_color_dark = ""
+# Header #
+header_background_color = ""
+header_background_color_dark = ""
+header_title_font_size = ""
+header_title_font_family = ""
+menu_active_color = ""
+menu_active_color_dark = ""
+menu_border_color = ""
+menu_border_color_dark = ""
+search_background_color = ""
+search_background_color_dark = ""
+# Tag Cloud #
+tag_cloud_start = ""
+tag_cloud_start_dark = ""
+tag_cloud_end = ""
+tag_cloud_end_dark = ""
+# Single Content #
+toc_title_font_size = ""
+toc_content_font_size = ""
+collection_title_font_size = ""
+collection_list_font_size = ""
+related_title_font_size = ""
+related_list_font_size = ""
+single_link_color = ""
+single_link_color_dark = ""
+single_link_hover_color = ""
+single_link_hover_color_dark = ""
+# Table #
+table_background_color = ""
+table_background_color_dark = ""
+table_thead_color = ""
+table_thead_color_dark = ""
+table_border_color = ""
+table_border_color_dark = ""
+# Blockquote #
+blockquote_color = ""
+blockquote_color_dark = ""
+# Reward #
+reward_color = ""
+reward_color_dark = ""
+reward_img_width = ""
+# Pagination #
+pagination_link_color = ""
+pagination_link_color_dark = ""
+pagination_link_hover_color = ""
+pagination_link_hover_color_dark = ""
+# Code #
+code_color = ""
+code_color_dark = ""
+code_font_family = ""
+code_header_color = ""
+code_header_color_dark = ""
+code_header_background_color = ""
+code_header_background_color_dark = ""
+code_background_color = ""
+code_background_color_dark = ""
+code_error_color = ""
+code_highlight_color = ""
+code_highlight_color_dark = ""
+code_font_size = ""
+code_block_font_size = ""
+# GitHub Corners #
+github_corner_color = ""
+github_corner_color_dark = ""
+github_corner_fill = ""
+github_corner_fill_dark = ""
+
+# Developer options.
+# Select the scope named `public_repo` to generate personal access token,
+# Configure with environment variable `HUGO_PARAMS_GHTOKEN=xxx`, See: https://gohugo.io/functions/os/getenv/#examples.
+[dev]
+enable = false
+# Check for updates.
+c4u = false

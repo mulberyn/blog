@@ -1,0 +1,58 @@
+# -------------------------------------------------------------------------------------
+# Menu Configuration
+# See: https://fixit.lruihao.cn/docs/getting-started/configuration/#menu-configuration
+# -------------------------------------------------------------------------------------
+
+[[main]]
+identifier = "archives"
+parent = ""
+# You can add extra information before the name (HTML format is supported), such as icons.
+pre = ""
+# You can add extra information after the name (HTML format is supported), such as icons.
+post = ""
+name = "Archives"
+url = "archives/"
+# Title will be shown when you hover on this menu link.
+title = ""
+weight = 1
+
+# Add user-defined content to menu items.
+[main.params]
+# Add CSS class to a specific menu item.
+class = ""
+# Whether set as a draft menu item, hidden by default.
+# Visible when env var is set: HUGO_PARAMS_MENU_DRAFT=true hugo server
+draft = false
+# Add FontAwesome icon to a specific menu item.
+icon = "fa-solid fa-archive"
+# Set menu item type.
+# Available values: ["mobile", "desktop"]
+type = ""
+# Whether to show the submenu item divider line.
+divided = false
+
+[[main]]
+identifier = "categories"
+parent = ""
+pre = ""
+post = ""
+name = "Categories"
+url = "categories/"
+title = ""
+weight = 2
+
+[main.params]
+icon = "fa-solid fa-folder-tree"
+
+[[main]]
+identifier = "tags"
+parent = ""
+pre = ""
+post = ""
+name = "Tags"
+url = "tags/"
+title = ""
+weight = 3
+
+[main.params]
+icon = "fa-solid fa-tags"
